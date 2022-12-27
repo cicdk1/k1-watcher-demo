@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: 'https://6za.github.io/helm-charts'
-    targetRevision: 0.6.0
+    targetRevision: 0.17.0
     helm:
       values: |-
         image: 6zar/k1-watcher-contoller:latest
