@@ -11,13 +11,13 @@ spec:
     deployments:
       -   name: external-secrets-operator      
           namespace: external-secrets-operator
-          ready: "true"
+          ready: "True"
       -   name: external-secrets-operator-cert-controller
           namespace: external-secrets-operator
-          ready: "true"      
+          ready: "True"      
       -   name: external-secrets-operator-webhook
           namespace: external-secrets-operator
-          ready: "true"      
+          ready: "True"      
         
 --- 
 # Creates the argo annotation for CRD

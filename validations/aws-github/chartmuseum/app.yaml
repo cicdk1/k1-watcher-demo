@@ -11,7 +11,7 @@ spec:
     deployments:
       - name: chartmuseum
         namespace: chartmuseum   
-        ready: "true"
+        ready: "True"
         
 --- 
 # Creates the argo annotation for CRD

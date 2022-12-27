@@ -11,7 +11,7 @@ spec:
     deployments:
       - name: actions-runner-controller
         namespace: github-runner    
-        ready: "true"  
+        ready: "True"  
         
 --- 
 # Creates the argo annotation for CRD

@@ -15,7 +15,7 @@ spec:
     statefulsets:
     - name: vault
       namespace: vault
-      ready: "true"
+      ready: "True"
     pods:
     - name: vault-0
       namespace: vault 

@@ -11,10 +11,10 @@ spec:
     deployments:
     - name: kubefirst-vouch
       namespace: kubefirst
-      ready: "true"
+      ready: "True"
     - name: kubefirst-console
       namespace: kubefirst    
-      ready: "true"    
+      ready: "True"    
         
 --- 
 # Creates the argo annotation for CRD

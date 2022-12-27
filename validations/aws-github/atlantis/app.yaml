@@ -11,7 +11,7 @@ spec:
     statefulsets:
       - name: atlantis
         namespace: atlantis  
-        ready: "true"
+        ready: "True"
         
 --- 
 # Creates the argo annotation for CRD
