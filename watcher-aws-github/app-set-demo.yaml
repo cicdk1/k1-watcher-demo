@@ -1,18 +1,24 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: kubefirst-validation-local
+  name: watcher-demo-unfolder
   namespace: argocd
 spec:
   generators:
   - list:
       elements:
-        - name: atlantis-check
-          path: validations/local/atlantis
-          wave: '60'
-        - name: vault-local-check
-          path: validations/local/vault-local
-          wave: '60'
+        - name: recursive-tree-app1
+          path: components/app1
+          wave: '10'
+        - name: recursive-tree-app2
+          path: components/app2 
+          wave: '20'
+        - name: recursive-tree-app3
+          path: components/app3 
+          wave: '30'
+        - name: recursive-tree-app4
+          path: components/app4
+          wave: '100'
   template:
       metadata:
         name: '{{name}}-demo'        

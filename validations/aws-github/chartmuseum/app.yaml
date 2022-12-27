@@ -1,0 +1,38 @@
+apiVersion: k1.kubefirst.io/v1beta1
+kind: Watcher
+metadata:
+  name: wait-chartmuseum-gh-aws
+  namespace: default
+  annotations:
+    argocd.argoproj.io/hook: PreSync    
+spec:
+    exit: 0
+    timeout: 300
+    deployments:
+      - name: chartmuseum
+        namespace: chartmuseum   
+        ready: "true"
+        
+--- 
+# Creates the argo annotation for CRD
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: run-post-chartmuseum-gh-aws-ready-job
+  namespace: argocd
+spec:
+  template:
+    spec:
+      serviceAccountName: argocd-server
+      containers:
+      - name: c
+        image: portainer/kubectl-shell:latest
+        command:
+        - /bin/sh
+        - -c
+        - |
+          #Do something          
+          echo "post chartmuseum ready action"
+          sleep 30
+      restartPolicy: Never
+  backoffLimit: 1   

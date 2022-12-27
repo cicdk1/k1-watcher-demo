@@ -8,10 +8,25 @@ spec:
   - list:
       elements:
         - name: atlantis-check
-          path: validations/local/atlantis
+          path: validations/aws-github/atlantis
           wave: '60'
-        - name: vault-local-check
-          path: validations/local/vault-local
+        - name: actions-runner-controller-check
+          path: validations/aws-github/actions-runner-controller
+          wave: '60'          
+        - name: chartmuseum-check
+          path: validations/aws-github/chartmuseum
+          wave: '60'
+        - name: external-dns-check
+          path: validations/aws-github/external-dns
+          wave: '60'
+        - name: external-secrets-operator
+          path: validations/aws-github/external-secrets-operator
+          wave: '60'
+        - name: kubefirst-check
+          path: validations/aws-github/kubefirst
+          wave: '60'                                        
+        - name: vault-check
+          path: validations/aws-github/vault
           wave: '60'
   template:
       metadata:

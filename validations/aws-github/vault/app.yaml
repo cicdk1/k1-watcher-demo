@@ -1,0 +1,50 @@
+apiVersion: k1.kubefirst.io/v1beta1
+kind: Watcher
+metadata:
+  name: wait-vault-gh-aws
+  namespace: default
+  annotations:
+    argocd.argoproj.io/hook: PreSync    
+spec:
+    exit: 0
+    timeout: 300
+    jobs:
+    - name: unseal-vault
+      namespace: vault
+      succeeded: 1
+    statefulsets:
+    - name: vault
+      namespace: vault
+      ready: "true"
+    pods:
+    - name: vault-0
+      namespace: vault 
+      labels:
+        vault-active: 'false'
+        vault-initialized: 'true'
+        vault-perf-standby: 'false'
+        vault-sealed: 'false'
+        
+--- 
+# Creates the argo annotation for CRD
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: run-post-vault-gh-aws-ready-job
+  namespace: argocd
+spec:
+  template:
+    spec:
+      serviceAccountName: argocd-server
+      containers:
+      - name: c
+        image: portainer/kubectl-shell:latest
+        command:
+        - /bin/sh
+        - -c
+        - |
+          #Do something          
+          echo "post vault ready action"
+          sleep 30
+      restartPolicy: Never
+  backoffLimit: 1   
