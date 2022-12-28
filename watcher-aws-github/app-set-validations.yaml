@@ -8,7 +8,7 @@ spec:
   - list:
       elements:
         - name: atlantis-check
-          path: validations/aws-github/atlantis
+          path: validations/aws/atlantis
           wave: '60'
         - name: actions-runner-controller-check
           path: validations/aws-github/actions-runner-controller
