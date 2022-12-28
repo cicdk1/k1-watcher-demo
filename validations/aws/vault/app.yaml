@@ -20,7 +20,6 @@ spec:
     - name: vault-0
       namespace: vault 
       labels:
-        vault-active: 'false'
         vault-initialized: 'true'
         vault-perf-standby: 'false'
         vault-sealed: 'false'
