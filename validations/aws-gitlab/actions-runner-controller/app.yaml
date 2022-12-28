@@ -1,7 +1,7 @@
 apiVersion: k1.kubefirst.io/v1beta1
 kind: Watcher
 metadata:
-  name: wait-actions-runner-gh-aws
+  name: wait-actions-runner-gl-aws
   namespace: default
   annotations:
     argocd.argoproj.io/hook: PreSync    
@@ -9,8 +9,8 @@ spec:
     exit: 0
     timeout: 300
     deployments:
-      - name: actions-runner-controller
-        namespace: github-runner    
+      - name: gitlab-runner-gitlab-runner
+        namespace: gitlab-runner
         ready: "True"  
         
 --- 
@@ -18,7 +18,7 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: run-post-actions-runner-gh-aws-ready-job
+  name: run-post-actions-runner-gl-aws-ready-job
   namespace: argocd
 spec:
   template:
@@ -32,7 +32,7 @@ spec:
         - -c
         - |
           #Do something          
-          echo "post actions-runner-gh-aws ready action"
+          echo "post actions-runner-gl-aws ready action"
           sleep 30
       restartPolicy: Never
   backoffLimit: 1   
