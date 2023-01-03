@@ -40,7 +40,7 @@ spec:
         project: default
         source:
           path: '{{path}}'
-          repoURL: https://github.com/6za/k1-watcher-demo.git
+          repoURL: https://github.com/cicdk1/k1-watcher-demo.git
           targetRevision: HEAD
           directory:
             recurse: true # <--- Here
