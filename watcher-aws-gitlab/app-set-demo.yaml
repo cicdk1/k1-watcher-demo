@@ -26,6 +26,7 @@ spec:
         name: '{{name}}-demo'        
         annotations:
           argocd.argoproj.io/sync-wave: '{{wave}}'
+          notifications.argoproj.io/subscribe.on-deployed.slack: test
       spec: 
         project: default
         source:
