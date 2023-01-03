@@ -35,6 +35,8 @@ kind: Job
 metadata:
   name: run-some-long-action-app2
   namespace: argocd
+  annotations:
+    notifications.argoproj.io/subscribe.on-sync-succeeded.slack: test
 spec:
   template:
     spec:
