@@ -36,15 +36,7 @@ metadata:
   name: run-some-long-action-app2
   namespace: argocd
   annotations:
-    notifications.argoproj.io/subscriptions: |
-      - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed]
-        destinations:
-          - service: slack
-            recipients: [test]
-      - trigger: [on-rollout-aborted, on-analysis-run-failed, on-analysis-run-error]
-        destinations:
-          - service: slack
-            recipients: [test]
+    notifications.argoproj.io/subscribe.on-deployed.slack: test
 spec:
   template:
     spec:
