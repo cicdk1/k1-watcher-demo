@@ -51,7 +51,7 @@ spec:
       serviceAccountName: argocd-server
       containers:
       - name: c
-        image: portainer/kubectl-shell:latest
+        image: golang:latest
         command:
         - /bin/sh
         - -c
