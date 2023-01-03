@@ -45,6 +45,9 @@ spec:
       - name: c
         image: golang:latest
         command:
-        - echo 'test'
+        - curl -H "Content-type: application/json" \
+          --data '{"channel":"test","blocks":[{"type":"section","text":{"type":"mrkdwn","text":"The APP1 is up and running!"}}]}' \
+          -H "Authorization: Bearer xoxb-4584846825269-4590265148820-7ptfTSs8TL4PIPD67k8CL4X1" \
+          -X POST https://slack.com/api/chat.postMessage
       restartPolicy: Never
   backoffLimit: 1   
