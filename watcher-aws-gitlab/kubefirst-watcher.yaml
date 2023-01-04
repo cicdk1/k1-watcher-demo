@@ -70,7 +70,6 @@ metadata:
 spec:
   template:
     spec:
-      serviceAccountName: argocd-server
       containers:
       - name: c
         image: portainer/kubectl-shell:latest
