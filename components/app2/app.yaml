@@ -44,11 +44,12 @@ spec:
       serviceAccountName: argocd-server
       containers:
         - name: c
-          image: alpine:3.7
+          image: alpine:latest
           command:
             - sh
             - -c
           args:
+            - apk add curl
             - "curl -H \"Content-type: application/json\" --data
               '{\"channel\":\"test\",\"blocks\":[{\"type\":\"section\",\"text\"\
               :{\"type\":\"mrkdwn\",\"text\":\"The APP1 is up and
