@@ -36,7 +36,7 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: run-some-long-action-app2-test
+  name: run-some-long-action-app2
   namespace: argocd
 spec:
   template:
