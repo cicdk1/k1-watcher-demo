@@ -58,7 +58,7 @@ spec:
             - name: MYSECRETPASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: argocd-notifications-secreta
+                  name: argocd-notifications-secret
                   key: slack-token
       restartPolicy: Never
   backoffLimit: 1
