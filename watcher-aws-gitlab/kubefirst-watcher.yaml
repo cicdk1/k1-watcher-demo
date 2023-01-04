@@ -77,6 +77,6 @@ spec:
         - /bin/sh
         - -c
         - |
-          kubectl get watcher
+          sleep 130 && kubectl get watcher
       restartPolicy: Never
   backoffLimit: 1   
