@@ -35,19 +35,22 @@ kind: Job
 metadata:
   name: run-some-long-action-app2
   namespace: argocd
-  annotations:
-    notifications.argoproj.io/subscribe.on-deployed.slack: test
 spec:
   template:
     spec:
       serviceAccountName: argocd-server
       containers:
       - name: c
-        image: golang:latest
-        command:
-        - curl -H "Content-type: application/json" \
-          --data '{"channel":"test","blocks":[{"type":"section","text":{"type":"mrkdwn","text":"The APP1 is up and running!"}}]}' \
-          -H "Authorization: Bearer xoxb-4584846825269-4590265148820-7ptfTSs8TL4PIPD67k8CL4X1" \
-          -X POST https://slack.com/api/chat.postMessage
+        image: alpine:3.7
+        command: [sh, -c]
+        args: ['
+          echo "secret from env: $MYSECRETPASSWORD";
+        ']
+        env:
+        - name: MYSECRETPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: argocd-notifications-secret
+              key: slack-token
       restartPolicy: Never
   backoffLimit: 1   
