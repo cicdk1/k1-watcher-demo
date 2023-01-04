@@ -46,7 +46,7 @@ spec:
         args: ['
           echo "secret from env: $MYSECRETPASSWORD";
           curl -H "Content-type: application/json" \
-          --data '{"channel":"test","blocks":[{"type":"section","text":{"type":"mrkdwn","text":"The APP1 is up and running!"}}]}' \
+          --data ''{"channel":"test","blocks":[{"type":"section","text":{"type":"mrkdwn","text":"The APP1 is up and running!"}}]}'' \
           -H "Authorization: Bearer $MYSECRETPASSWORD" \
           -X POST https://slack.com/api/chat.postMessage          
         ']
