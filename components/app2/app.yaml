@@ -36,7 +36,7 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: run-some-long-action-app2
+  name: run-some-long-action-app2-test
   namespace: argocd
 spec:
   template:
@@ -49,8 +49,7 @@ spec:
             - sh
             - -c
           args:
-            - apk add curl
-            - "curl -H \"Content-type: application/json\" --data
+            - "apk add curl && curl -H \"Content-type: application/json; charset=utf-8\" --data
               '{\"channel\":\"test\",\"blocks\":[{\"type\":\"section\",\"text\"\
               :{\"type\":\"mrkdwn\",\"text\":\"The APP1 is up and
               running!\"}}]}' -H \"Authorization: Bearer $MYSECRETPASSWORD\" -X
@@ -59,7 +58,7 @@ spec:
             - name: MYSECRETPASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: argocd-notifications-secret
+                  name: argocd-notifications-secreta
                   key: slack-token
       restartPolicy: Never
   backoffLimit: 1
