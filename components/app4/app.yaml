@@ -46,7 +46,7 @@ spec:
           args:
             - "apk add curl && curl -H \"Content-type: application/json; charset=utf-8\" --data
               '{\"channel\":\"test\",\"blocks\":[{\"type\":\"section\",\"text\"\
-              :{\"type\":\"mrkdwn\",\"text\":\"The APP1 is up and
+              :{\"type\":\"mrkdwn\",\"text\":\"The APP4 is up and
               running!\"}}]}' -H \"Authorization: Bearer $MYSECRETPASSWORD\" -X
               POST https://slack.com/api/chat.postMessage"
           env:
