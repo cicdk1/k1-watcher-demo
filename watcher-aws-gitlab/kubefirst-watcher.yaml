@@ -58,3 +58,26 @@ spec:
           sleep 10
       restartPolicy: Never
   backoffLimit: 1   
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: send-notification
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/hook: PostSync      
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  template:
+    spec:
+      serviceAccountName: argocd-server
+      containers:
+      - name: c
+        image: portainer/kubectl-shell:latest
+        command:
+        - /bin/sh
+        - -c
+        - |
+          kubectl get watcher
+      restartPolicy: Never
+  backoffLimit: 1   
