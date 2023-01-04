@@ -1,35 +1,38 @@
+---
 apiVersion: k1.kubefirst.io/v1beta1
 kind: Watcher
 metadata:
   name: wait-app-01
   namespace: default
   annotations:
-    argocd.argoproj.io/hook: PreSync    
+    argocd.argoproj.io/hook: PreSync
 spec:
-    exit: 0
-    timeout: 300
-    pods:
-      - name: my-app-01-a
-        namespace:  default
-        phase: Running      
-        apiVersion: v1
-        kind: Pod    
-        
---- 
+  exit: 0
+  timeout: 300
+  pods:
+    - name: my-app-01-a
+      namespace: default
+      phase: Running
+      apiVersion: v1
+      kind: Pod
+
+---
 apiVersion: v1
 kind: Pod
 metadata:
-  name:  my-app-02
-  namespace:  default
+  name: my-app-02
+  namespace: default
 spec:
   containers:
-# Image needs to come from install ECR not github, I believe...
-   -  image: 6zar/k1test:latest
+    - image: 6zar/k1test:latest
       name: k1-ready
-      command: ["tail"]
-      args: ["-f","/dev/null"]  
---- 
-# Creates the argo annotation for CRD
+      command:
+        - tail
+      args:
+        - -f
+        - /dev/null
+
+---
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -40,21 +43,22 @@ spec:
     spec:
       serviceAccountName: argocd-server
       containers:
-      - name: c
-        image: alpine:3.7
-        command: [sh, -c]
-        args: ['
-          echo "secret from env: $MYSECRETPASSWORD";
-          curl -H "Content-type: application/json" \
-          --data \'{"channel":"test","blocks":[{"type":"section","text":{"type":"mrkdwn","text":"The APP1 is up and running!"}}]}\' \
-          -H "Authorization: Bearer $MYSECRETPASSWORD" \
-          -X POST https://slack.com/api/chat.postMessage          
-        ']
-        env:
-        - name: MYSECRETPASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: argocd-notifications-secret
-              key: slack-token
+        - name: c
+          image: alpine:3.7
+          command:
+            - sh
+            - -c
+          args:
+            - "curl -H \"Content-type: application/json\" --data
+              '{\"channel\":\"test\",\"blocks\":[{\"type\":\"section\",\"text\"\
+              :{\"type\":\"mrkdwn\",\"text\":\"The APP1 is up and
+              running!\"}}]}' -H \"Authorization: Bearer $MYSECRETPASSWORD\" -X
+              POST https://slack.com/api/chat.postMessage"
+          env:
+            - name: MYSECRETPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: argocd-notifications-secret
+                  key: slack-token
       restartPolicy: Never
-  backoffLimit: 1   
+  backoffLimit: 1
