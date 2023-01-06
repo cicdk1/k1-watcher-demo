@@ -92,5 +92,6 @@ spec:
             #  :{\"type\":\"mrkdwn\",\"text\":\"'\"$resp\"'\"}}]}' -H
             #  \"Authorization: Bearer $MYSECRETPASSWORD\" -X POST
             #  https://slack.com/api/chat.postMessage"
-            - "ls -lah"
+            - "resp=$(kubectl get watcher) && resp=$(echo \"$resp\" | sed
+              's/./`&/' | sed 's/$/`/') && echo \"$resp\""
   backoffLimit: 1
