@@ -65,9 +65,9 @@ kind: Job
 metadata:
   name: send-notification
   namespace: default
-  annotations:
-    argocd.argoproj.io/hook: PostSync
-    argocd.argoproj.io/sync-wave: "1"
+  #annotations:
+  #  argocd.argoproj.io/hook: PostSync
+  #  argocd.argoproj.io/sync-wave: "1"
 spec:
   template:
     spec:
