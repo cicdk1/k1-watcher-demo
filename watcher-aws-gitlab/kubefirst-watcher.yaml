@@ -92,5 +92,5 @@ spec:
             #  :{\"type\":\"mrkdwn\",\"text\":\"'\"$resp\"'\"}}]}' -H
             #  \"Authorization: Bearer $MYSECRETPASSWORD\" -X POST
             #  https://slack.com/api/chat.postMessage"
-            - "curl -v https://google.com"
+            - "ls -lah"
   backoffLimit: 1
