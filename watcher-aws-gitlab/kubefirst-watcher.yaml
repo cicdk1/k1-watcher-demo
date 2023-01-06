@@ -85,11 +85,17 @@ spec:
             - sh
             - -c
           args:
-            - "resp=$(kubectl get watcher) && resp=$(echo \"$resp\" | sed
-              's/./`&/' | sed 's/$/`/') && curl -H \"Content-type:
+            #- "resp=$(kubectl get watcher) && resp=$(echo \"$resp\" | sed
+            #  's/./`&/' | sed 's/$/`/') && curl -H \"Content-type:
+            #  application/json; charset=utf-8\" --data
+            #  '{\"channel\":\"test\",\"blocks\":[{\"type\":\"section\",\"text\"\
+            #  :{\"type\":\"mrkdwn\",\"text\":\"'\"$resp\"'\"}}]}' -H
+            #  \"Authorization: Bearer $MYSECRETPASSWORD\" -X POST
+            #  https://slack.com/api/chat.postMessage"
+            - "curl -H \"Content-type:
               application/json; charset=utf-8\" --data
               '{\"channel\":\"test\",\"blocks\":[{\"type\":\"section\",\"text\"\
-              :{\"type\":\"mrkdwn\",\"text\":\"'\"$resp\"'\"}}]}' -H
+              :{\"type\":\"mrkdwn\",\"text\":\"teste\"}}]}' -H
               \"Authorization: Bearer $MYSECRETPASSWORD\" -X POST
               https://slack.com/api/chat.postMessage"
   backoffLimit: 1
