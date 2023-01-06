@@ -87,6 +87,34 @@ spec:
 # Sample Kubefirst AWS-GITLAB
 
 ```yaml 
+apiVersion: v1
+kind: Secret
+metadata:
+  name: argocd-notifications-secret
+  namespace: default
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+type: Opaque
+data:
+  slack-token: <SLACK_TOKEN_BASE64>
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: default-rbac
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+subjects:
+  - kind: ServiceAccount
+    # Reference to upper's `metadata.name`
+    name: default
+    # Reference to upper's `metadata.namespace`
+    namespace: default
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io
+---
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
@@ -104,7 +132,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/6za/k1-watcher-demo.git
+        repoURL: https://github.com/cicdk1/k1-watcher-demo.git
         targetRevision: HEAD
         path: watcher-aws-gitlab
       destination:
@@ -121,5 +149,5 @@ spec:
           backoff:
             duration: 5s
             maxDuration: 5m0s
-            factor: 2   
+            factor: 2
 ```
