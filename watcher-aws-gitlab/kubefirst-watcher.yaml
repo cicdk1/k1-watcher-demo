@@ -71,6 +71,7 @@ metadata:
 spec:
   template:
     spec:
+      restartPolicy: Never
       containers:
         - name: c
           image: portainer/kubectl-shell:latest
@@ -91,5 +92,4 @@ spec:
               :{\"type\":\"mrkdwn\",\"text\":\"'\"$resp\"'\"}}]}' -H
               \"Authorization: Bearer $MYSECRETPASSWORD\" -X POST
               https://slack.com/api/chat.postMessage"
-        restartPolicy: Never
   backoffLimit: 1
