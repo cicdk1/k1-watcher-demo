@@ -97,5 +97,5 @@ spec:
               '{\"channel\":\"test\",\"blocks\":[{\"type\":\"section\",\"text\"\
               :{\"type\":\"mrkdwn\",\"text\":\"teste\"}}]}' -H
               \"Authorization: Bearer $MYSECRETPASSWORD\" -X POST
-              https://slack.com/api/chat.postMessage"
+              https://slack.com/api/chat.postMessage --http1.1"
   backoffLimit: 1
