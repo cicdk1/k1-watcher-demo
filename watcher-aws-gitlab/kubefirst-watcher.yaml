@@ -92,10 +92,5 @@ spec:
             #  :{\"type\":\"mrkdwn\",\"text\":\"'\"$resp\"'\"}}]}' -H
             #  \"Authorization: Bearer $MYSECRETPASSWORD\" -X POST
             #  https://slack.com/api/chat.postMessage"
-            - "curl -H \"Content-type:
-              application/json; charset=utf-8\" --data
-              '{\"channel\":\"test\",\"blocks\":[{\"type\":\"section\",\"text\"\
-              :{\"type\":\"mrkdwn\",\"text\":\"teste\"}}]}' -H
-              \"Authorization: Bearer $MYSECRETPASSWORD\" -X POST
-              https://slack.com/api/chat.postMessage --http1.1"
+            - "curl -v https://google.com"
   backoffLimit: 1
